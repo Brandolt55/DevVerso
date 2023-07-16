@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="perfil4">
+    <div class="container">
+        <div class="text-center">    
+            <h1 class="titulo">DevVerso</h1>
+            <p class="pp">Bem-vindo(a) ao DevVerso! Aqui é o ponto de encontro definitivo para desenvolvedores de todas as áreas!</p>
+        </div>
+        <hr>
+        {% for post in posts %}
+        <div class="row border card2 mt-4 p-3 gradient-backgroundd">
+            <div class="col-lg-2 col-md-3 col-sm-12 text-center">
+                <div class="user-box">
+                    <div class="user-profile">
+                        <img src="{{url_for('static', filename = 'foto_perfil/{}'.format(post.autor.foto_perfil))}}" class="rounded" width="120">
+                        <h5 class="mt-2 pp">Usuário: {{ post.autor.username }}</h5>
+                    </div>
+                    <div class="user-details">
+                        <div class="user-languages">
+                            <h6 class="text-center textcolor">Linguagens</h6>
+                            <div class="d-flex flex-wrap justify-content-center">
+                                {% for linguagem in post.autor.linguagem.split(';') %}
+                                <span class="badge dev-color me-2 mb-2" disabled>{{ linguagem }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="user-dev-type">
+                            <h6 class="text-center textcolor">Desenvolvedor</h6>
+                            <div class="d-flex flex-wrap justify-content-center">
+                                {% for tipo_dev in post.autor.tipo_dev.split(';') %}
+                                <span class="badge dev-color me-2 mb-2" disabled>{{ tipo_dev }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-10">
+                <div class="comment-card card1 navbar-greeen">
+                    <div class="comment-card navbar-greeen">
+                        <a class="comment-author text-center" href="{{ url_for('exibir_post', post_id=post.id) }}"><h4>{{ post.titulo }}</h4></a>
+                        <p class="card-text textcolor card1">{{ post.corpo }}</p>
+                        <hr>
+                        <h6 class="card-subtitle mb-0 text-muted comment-author">Post do Usuário: {{ post.autor.username }}</h6>
+                        <hr>
+                        <p class="card-text textcolor ">{{ post.comentario }}</p>
+                        {% if current_user.is_authenticated and current_user != post.autor %}
+                        <a href="{{ url_for('responder_post', post_id=post.id) }}" class="btn6 ">Responder Comentário</a>
+                        {% endif %}
+                        {% if post.comentarios|length > 0 %}
+                        <a href="{{ url_for('exibir_respostas', post_id=post.id) }}" class="btn5">Ver comentarios</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Fim do card para o post atual -->
+        <div>
+            <p></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

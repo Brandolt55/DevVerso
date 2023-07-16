@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<div class="perfil" id="fundo">
+        <div class="container">
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-0">
+                    <div class="section pb-5 pt-5 pt-sm-0 text-center">
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front2 card2 gradient-background">
+                                    <div class="center-wrap">
+                                        <form method="POST" action="">
+                                            {{ formlogin.csrf_token }}
+                                            <fieldset>
+                                                <div class="section text-center">
+                                                    <h4 class="mb-4 pb-4">Fazer login</h4>
+                                                <div class="mb-2 pb-0 form-group">
+                                                        <div class="edição-single form-group">
+                                                                <div class="input-container">
+                                                                  {% if formlogin.email.data %}
+                                                                    {{ formlogin.email(class='edição filled') }}
+                                                                    {{ formlogin.email.label(class='filled') }}
+                                                                  {% else %}
+                                                                    {{ formlogin.email(class="edição") }}
+                                                                    {{ formlogin.email.label }}
+                                                                  {% endif %}
+                                                                </div>
+                                                                {% if formlogin.email.errors %}
+                                                                  <div class="invalid-feedback">
+                                                                    {% for erro in formlogin.email.errors %}
+                                                                      {{ erro }}
+                                                                    {% endfor %}
+                                                                  </div>
+                                                                {% endif %}
+                                                        </div>
+                                                        <div class="edição-single form-group">
+                                                                <div class="input-container">
+                                                                  {% if formlogin.password.data %}
+                                                                    {{ formlogin.password(class='edição filled') }}
+                                                                    {{ formlogin.password.label(class='filled') }}
+                                                                  {% else %}
+                                                                    {{ formlogin.password(class="edição") }}
+                                                                    {{ formlogin.password.label }}
+                                                                  {% endif %}
+                                                                </div>
+                                                                {% if formlogin.password.errors %}
+                                                                  <div class="invalid-feedback">
+                                                                    {% for erro in formlogin.password.errors %}
+                                                                      {{ erro }}
+                                                                    {% endfor %}
+                                                                  </div>
+                                                                {% endif %}
+                                                        </div>
+                                                <div class="mb-2 pb-0 form-group">
+                                                        {{ formlogin.lembrar_dados.label(class="form-check-label")}}
+                                                        {{ formlogin.lembrar_dados(class="form-check-input")}}
+                                                </div>
+                                                <div class="form-group">
+                                                    <a href="{{ url_for('criar_conta') }}" class="link">Criar conta</a>
+                                                </div>
+                                                
+                                        </fieldset>
+                                                {{ formlogin.submit_login(class="btn btn-primary mt-3")}}
+                                        </form>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>    
+{% endblock %}

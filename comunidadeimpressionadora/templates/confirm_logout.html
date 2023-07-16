@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<section class="vh-100 navbar-greeen">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-12 col-xl-4">
+  
+          <div class="card navbar-green" style="border-radius: 15px;">
+            <div class="card-body text-center">
+              <div class="flex-shrink-0 mt-3 mb-4 ">
+                <img src="{{ foto_perfil  }}"
+                  alt="Generic placeholder image" class="img-fluid"
+                  style="width: 150px; border-radius: 15px;">
+              </div>
+              <h3> {{current_user.username}} Você tem certeza que deseja sair desta conta?</h3>
+                <form method="post">
+                    <button type="submit" class="btn btn-primary">Sim</button>
+                    <a href="{{ url_for('home') }}" class="btn btn-primary">Não</a>
+                </form>
+              </button>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+</section>
+
+{% endblock %}

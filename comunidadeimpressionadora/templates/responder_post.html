@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="perfil3">
+    <div class="container mt-3">
+        <div class="mt-4 p-3 ">
+            <div class="comment-card gradient-backgroundd">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-12 text-center">
+                        <img src="{{url_for('static', filename = 'foto_perfil/{}'.format(post.autor.foto_perfil))}}" class="rounded" width="120">
+                        <h5 class="mt-2 pp">Usuario: {{ post.autor.username }}</h5>                    
+                    </div>
+                    <div class="col-lg-10 col-md-9 col-sm-12 ">
+                        <div class="comment navbar-greeen card2">
+                            <div class="comment-header">
+                                <a class="comment-author" href="{{ url_for('exibir_post', post_id=post.id) }}">
+                                    <h3 class="text-center">{{ post.titulo }}</h3>
+                                    <small class="text-muted text-center">Data de Criação do Post: {{ post.data_criacao.strftime('%d/%m/%Y') }}</small>
+                                </a>
+                            </div>
+                            <div class="comment-body ">
+                                <p class="card-text textcolor card1">{{ post.corpo }}</p>
+                            </div>
+                        </div>
+                            <div class="comment-card usuariocolor1">
+                                <p class="card-text text-center card-text">{{ post.comentario }}</p>
+                                <h4 class="textcolor">Responder Post de : {{post.autor.username}}</h4>
+                                <form method="POST" action="{{ url_for('responder_post', post_id=post.id) }}">
+                                    {{ form.csrf_token }}
+                                    <div class="form-group">
+                                        {{ form.resposta.label(class=" textcolor form-control-label") }}
+                                        {% if form.resposta.errors %}
+                                            {{ form.resposta(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for erro in form.resposta.errors %}
+                                                    {{ erro }}
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.resposta(class="form-control") }}
+                                        {% endif %}
+
+                                    </div>
+                                    {{ form.botao_submit(class="btn mt-2") }}
+                                </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

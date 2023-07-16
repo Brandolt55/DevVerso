@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+<div class="perfil3">
+    <div class = 'container'>
+        <h1 class="text-center text-decoration textcolor">Usuários</h1>
+        {% for usuario in lista_usuario %}
+            <section>
+                <div class="container py-5">
+                <div class="row">
+                    <div class="col-lg-4 ">
+                    <div class="card1 mb-4 " id="fundo2" style="border-radius: 7px;">
+                        <div class="card-body text-center">
+                            <p>   </p>
+                            <div class="form-group">
+                                <div class="d-flex align-items-center justify-content-center">
+                                        <div class="flex-shrink-0 d-flex justify-content-center">
+                                            <img  src="{{url_for('static', filename = 'foto_perfil/{}'.format(usuario.foto_perfil))}}" class="img-fluid" style="width: 130px; border-radius: 15px;">
+                                        </div>
+                                </div> 
+                            </div>
+                        
+                        <h5 class="my-3 pp">{{usuario.username}}</h5>
+                        <p class="textcolor mb-1 ">E-mail: {{usuario.email}}</p>
+                            
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-6">
+                    <div class="card mb-4 usuariocolor1" >
+                        <div class="card-body">
+                            
+                        <div class="edição-single form-group">
+                        
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 ">
+                            <div class="card mb-4 mb-md-0 gradient-backgroundd " style="border-radius: 7px;">
+                                <div class="card-body">
+                                    <p class="mb-4"><span class=" font-italic me-1 pp">Tipo de Dev</span></p>
+                                    {% for tipo_dev in usuario.tipo_dev.split(';') %}
+                                        <button type="button" class="btn dev-color mt-2" disabled>{{tipo_dev }}</button>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="card mb-4 mb-md-0 gradient-backgroundd" style="border-radius: 7px;">
+                            <div class="card-body">
+                            <p class="mb-4"><span class=" font-italic me-1 pp ">Liguagens</span></p>
+                            {% for linguagem in usuario.linguagem.split(';') %}
+                                <button type="button" class="btn dev-color mt-2" disabled>{{linguagem }}</button>
+                            {% endfor %}
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+        
+        </section>
+        <hr>
+        {% endfor %}
+    </div> 
+</div>       
+{% endblock %}

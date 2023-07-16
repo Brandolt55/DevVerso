@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="estilo"
+        <div class="container">
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-0">
+                    <div class="section pb-5 pt-5 pt-sm-0 text-center">
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front2 gradient-backgroundd">
+                                    <div class="center-wrap">
+                                        <form method="POST">
+                                            <fieldset>
+                                                <div class="section text-center">
+                                                    <h4 class="mb-4 pb-4">Editar comentario</h4>
+                                                
+                                                <div>
+                                                    <p></p>
+                                                </div>
+                                                <div >
+                                                    <textarea class="form-control" id="conteudo" name="conteudo" rows="5">{{ comentario.conteudo }}</textarea>
+                                                </div>
+                                        </fieldset>
+                                        <div>
+                                            <button type="submit" class="btn btn-primary">Salvar</button>
+                                        </div>
+                                        </form>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}
+
+
+
+   

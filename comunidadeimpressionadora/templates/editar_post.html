@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="perfil3">
+    <div class="container mt-3">
+        <div class="mt-4 p-3 ">
+            <div class="comment-card gradient-backgroundd">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-12 text-center">
+                        <img src="{{url_for('static', filename = 'foto_perfil/{}'.format(post.autor.foto_perfil))}}" class="rounded" width="120">
+                        <h5 class="mt-2 pp">Usuario: {{ post.autor.username }}</h5>                    
+                    </div>
+                    <div class="col-lg-10 col-md-9 col-sm-12 ">
+                        <div class="comment navbar-greeen">
+                            <div class="comment-header">
+                                <a class="comment-author" href="{{ url_for('exibir_post', post_id=post.id) }}">
+                                    <h3>{{ post.titulo }}</h3>
+                                    <small class="text-muted">Data de Criação do Post: {{ post.data_criacao.strftime('%d/%m/%Y') }}</small>
+                                    {% if form %}
+                                        <div class="comment-actions">
+                                            
+                                            <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Excluir Post</a>
+                                        </div>
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="comment-body ">
+                                <p class="pp">{{ post.corpo }}</p>
+                            </div>
+                        </div>
+                        
+                        
+                        {% if current_user == post.autor %}
+                            <div class="comment-card usuariocolor1">
+                                <p class="card-text text-center card-text">{{ post.comentario }}</p>
+                                <h4 class="textcolor">Editar Post</h4>
+                                <form method="POST" action="" id="form_editarpost">
+                                    {{ form.csrf_token }}
+                                    <div class="form-group">
+                                        {{ form.titulo.label(class="textcolor form-control-label") }}
+                                        {% if form.titulo.errors %}
+                                            {{ form.titulo(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for erro in form.titulo.errors %}
+                                                    {{ erro }}
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.titulo(class="form-control") }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.corpo.label(class=" textcolor form-control-label") }}
+                                        {% if form.corpo.errors %}
+                                            {{ form.corpo(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for erro in form.corpo.errors %}
+                                                    {{ erro }}
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.corpo(class="form-control") }}
+                                        {% endif %}
+                                    </div>
+                                    {{ form.botao_submit2(class="btn mt-2") }}
+                                </form>
+                            </div>
+                        {% else %}
+                            <hr>
+                            <h6 class="card-subtitle mb-2 text-muted comment-author">Comentário do Usuário: {{ post.autor.username }}</h6>
+                            <p class="card-text card-text">{{ post.comentario }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja excluir este Post? Esta ação não pode ser desfeita.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">voltar</button>
+            <form method="POST" action="{{url_for('excluir_post', post_id = post.id) }}">
+                <button type="submit"  class="btn btn-danger">Excluir Post</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

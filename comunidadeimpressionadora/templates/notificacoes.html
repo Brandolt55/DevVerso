@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="perfil4">
+    <div class="container">
+        <h1 class="text-center h1color">Suas notificações mais recentes</h1>
+        <hr>
+        {% for notificacao in notificacoes %}
+        <div class="card3 container">
+            <li class=" text-center">
+                <a href="{{ url_for('exibir_respostas', post_id=notificacao.comentario.post.id) }}" class="link">
+                    {{ notificacao.mensagem }} - {{ notificacao.data.strftime('%d/%m/%Y') }}
+                </a>
+                <hr>
+                <form method="POST" action="{{ url_for('excluir_notificacao', notificacao_id=notificacao.id) }}">
+                    <button type="submit" class="btn-danger">Excluir</button>
+                </form>
+            </li>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

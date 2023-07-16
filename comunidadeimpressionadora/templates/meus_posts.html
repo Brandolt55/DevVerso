@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="perfil4">
+    <div class="container">
+        <h1 class="titulo">Meus Posts</h1>
+        {% for post in posts %}
+        <div class="row border card2 mt-4 p-3 gradient-backgroundd">
+            <div class="col-lg-2 col-md-3 col-sm-12 text-center">
+                <div class="user-box ">
+                    <div class="user-profile">
+                        <img src="{{url_for('static', filename = 'foto_perfil/{}'.format(post.autor.foto_perfil))}}" class="rounded" width="120">
+                        <h5 class="mt-2 pp">Usuário: {{ post.autor.username }}</h5>
+                    </div>
+                    <div class="user-details">
+                            <div class="user-languages">
+                                <h6 class="text-center textcolor">Linguagens</h6>
+                                <div class="d-flex flex-wrap justify-content-center">
+                                    {% for linguagem in post.autor.linguagem.split(';') %}
+                                        <span class="badge dev-color me-2 mb-2" disabled>{{ linguagem }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="user-dev-type">
+                                <h6 class="text-center textcolor">Desenvolvedor</h6>
+                                <div class="d-flex flex-wrap justify-content-center">
+                                    {% for tipo_dev in post.autor.tipo_dev.split(';') %}
+                                        <span class="badge dev-color me-2 mb-2" disabled>{{ tipo_dev }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            
+                <div class="col-10">
+                    <div class="comment-card card2 navbar-greeen">
+                        <div class="comment-card navbar-greeen">
+                            <a class="comment-author" href="{{ url_for('exibir_post', post_id=post.id) }}"><h4>{{ post.titulo }}</h4>
+                                <small class="text-muted">Data de Criação do Post: {{ post.data_criacao.strftime('%d/%m/%Y') }}</small>
+                                        <div class="comment-actions">
+                                            <a href="{{ url_for('editar_post', post_id=post.id) }}">Editar Post</a> /
+                                            <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Excluir Post</a>
+                                        </div>
+                            </a>
+                            <p class="card-text card1 textcolor">{{ post.corpo }}</p>
+                            <hr>
+                            <h6 class="card-subtitle mb-0 text-muted comment-author">Comentário do Usuário: {{ post.autor.username }}</h6>
+                            <p class="card-text textcolor ">{{ post.comentario }}</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div>
+            <p></p>
+        </div>
+            
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Tem certeza que deseja excluir este Post? Esta ação não pode ser desfeita.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">voltar</button>
+                    <form method="POST" action="{{url_for('excluir_post', post_id = post.id) }}">
+                        <button type="submit"  class="btn btn-danger">Excluir Post</button>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+               
+            
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

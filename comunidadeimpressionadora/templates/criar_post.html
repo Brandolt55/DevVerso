@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<div class="estilo"
+        <div class="container">
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-0">
+                    <div class="section pb-5 pt-5 pt-sm-0 text-center">
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front2 gradient-backgroundd">
+                                    <div class="center-wrap">
+                                        <form method="POST" action="">
+                                            {{ form.csrf_token }}
+                                            <fieldset>
+                                                <div class="section text-center">
+                                                    <h4 class="mb-4 pb-4">Criar Post</h4>
+                                                <div class="mb-2 pb-0 form-group">
+                                                  <div class="form-group">
+                                                    {{ form.titulo.label(class="form-control-label") }}
+                                                    {% if form.titulo.errors %}
+                                                        {{ form.titulo(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form.titulo.errors %}
+                                                            {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                        {{ form.titulo(class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                                <div>
+                                                    <p></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    {{ form.corpo.label(class="form-control-label") }}
+                                                    {% if form.corpo.errors %}
+                                                        {{ form.corpo(class="form-control is-invalid") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for erro in form.corpo.errors %}
+                                                            {{ erro }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                        {{ form.corpo(class="form-control") }}
+                                                    {% endif %}
+                                                </div>
+                                        </fieldset>
+                                        {{ form.botao_submit(class="btn btn-primary mt-2") }}
+                                        </form>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+{% endblock %}
