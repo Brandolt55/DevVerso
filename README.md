@@ -1,9 +1,9 @@
 # projeto back-end
 
-Sobre o site:
+## Sobre o site:
 video demonstrando o site:https://www.canva.com/design/DAFo7lQBzME/iNOOD-jgS5ymgQnsktovIA/edit?utm_content=DAFo7lQBzME&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-framework usado: Flask
+## framework usado: Flask
 linguagens de programação: python e SQL
 
 ## Sobre o site:
