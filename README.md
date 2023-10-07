@@ -1,4 +1,4 @@
-# site Devverso
+# site Devverso - ## site feito em python com framework Flask e SQL 
 
 # video mostrando o site que é focado em back-end:
 video demonstrando o site:https://www.canva.com/design/DAFo7lQBzME/iNOOD-jgS5ymgQnsktovIA/edit?utm_content=DAFo7lQBzME&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
